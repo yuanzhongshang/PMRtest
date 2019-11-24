@@ -9,7 +9,7 @@ It is easy to install the development version of PMR package using the 'devtools
 ```
 # install.packages("devtools")
 library(devtools)
-install_github("yuanzhongshang/PMR")
+install_github("yuanzhongshang/PMRtest")
 ```
 
 
