@@ -1,3 +1,4 @@
+#' @importFrom PDSCE pdsoft
 #' @title The main function for probabilistic two-sample MR model with summary data under Egger pleiotropy effect assumption
 #' @description PMR_summary_Egger applies a likelihood-based approach, accounting for the correlated instruments and horizontal pleiotropy effect 
 #' @param Zscore_1 the Zscore vector of the cis-SNP effect size vector for one specific gene in eQTL data
