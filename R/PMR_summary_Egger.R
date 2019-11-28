@@ -7,6 +7,7 @@
 #' @param Sigma2sin the LD matrix in GWAS data,both Sigma2sin and sigma1sin are often the same from the reference panel
 #' @param samplen1 the sample size of eQTL data
 #' @param samplen2 the sample size of GWAS data
+#' @param lambda the parameter to represent the shrinkage strength with the default value to be 0 
 #' @param max_iterin The maximum iteration, which can be determined by users.
 #' @param epsin The convergence tolerance of the absolute value of the difference  between the nth and (n+1)th log likelihood, which can be determined by users.
 #' @param Heritability_geneexpression_threshold The threshold for the estimate of gene expression heritability explained by cis-SNPs, which can be determined by users. The causal effect pvalue will be assigned to be NA automatically if the the estimate of gene expression heritability is under this threshold.
@@ -19,10 +20,10 @@
 #' \item{sigma_error_1}{The variance estimate of the error in eQTL data model}
 #' \item{sigma_error_2}{The variance estimate of the error in GWAS data model}
 
-PMR_summary_Egger<-function(Zscore_1, Zscore_2, Sigma1sin, Sigma2sin, samplen1, samplen2, max_iterin =1000,epsin=1e-5, Heritability_geneexpression_threshold=1e-04){
+PMR_summary_Egger<-function(Zscore_1, Zscore_2, Sigma1sin, Sigma2sin, samplen1, samplen2, lambda=0,max_iterin =1000,epsin=1e-5, Heritability_geneexpression_threshold=1e-04){
 betaxin<-Zscore_1/sqrt(samplen1-1)
 betayin<-Zscore_2/sqrt(samplen2-1)
-Sigma2sin<-pdsoft(Sigma2sin,lam=0.1)$theta  
+Sigma2sin<-pdsoft(Sigma2sin,lam=lambda)$theta  
 fmH1=PMR_summary_Egger_CPP(betaxin,betayin,Sigma1sin,Sigma2sin,samplen1,samplen2,gammain=0,alphain=0,max_iterin =max_iterin, epsin=epsin)
 p=length(betaxin)
 Heritability_estimate=p*fmH1$sigmabeta
