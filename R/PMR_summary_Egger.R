@@ -7,7 +7,9 @@
 #' @param Sigma2sin the LD matrix in GWAS data,both Sigma2sin and sigma1sin are often the same from the reference panel
 #' @param samplen1 the sample size of eQTL data
 #' @param samplen2 the sample size of GWAS data
-#' @param lambda the parameter to represent the shrinkage strength with the default value to be 0 
+#' @param lambda The shrinkage parameter to guarantee the sparsity and positive definiteness of the estimated GWAS LD matrix using
+#' the method in PDSCE package,the default value is 0 to indicate almost no shrikage, other choice can be empirically 
+#' chosen to be 0.05,0.1,0.15. 
 #' @param max_iterin The maximum iteration, which can be determined by users.
 #' @param epsin The convergence tolerance of the absolute value of the difference  between the nth and (n+1)th log likelihood, which can be determined by users.
 #' @param Heritability_geneexpression_threshold The threshold for the estimate of gene expression heritability explained by cis-SNPs, which can be determined by users. The causal effect pvalue will be assigned to be NA automatically if the the estimate of gene expression heritability is under this threshold.
